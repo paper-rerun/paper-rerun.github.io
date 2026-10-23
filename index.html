@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Rerun</title>
+<meta name="description" content="We re-run published research code and report what holds.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Paper Rerun">
+<meta property="og:description" content="We re-run published research code and report what holds.">
+<meta property="og:image" content="https://paper-rerun.github.io/icon-512.png">
+<style>
+:root {
+  --bg: #ffffff; --fg: #14202e; --muted: #5a6778; --line: #e3e7ec; --soft: #f5f7f9;
+  --accent: #1f9e68; --navy: #0f1b2d;
+  --ok-bg: #e3f6ec; --ok-fg: #13643f; --part-bg: #fdf1dc; --part-fg: #7a4d07;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1420; --fg: #e6ebf1; --muted: #9aa7b6; --line: #1f2c3b; --soft: #111d2b;
+    --accent: #3ecf8e;
+    --ok-bg: #12382a; --ok-fg: #7fe0b2; --part-bg: #3a2b0e; --part-fg: #f2c66d;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+header { display: flex; gap: 18px; align-items: center; margin-bottom: 28px; }
+header img { width: 64px; height: 64px; border-radius: 14px; flex: none; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0; }
+.tagline { margin: 2px 0 0; color: var(--muted); }
+h2 { font-size: 21px; margin: 44px 0 10px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+.lead { font-size: 19px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--soft); font-weight: 600; font-size: 14px; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td .field { display: block; color: var(--muted); font-size: 13px; }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ok { background: var(--ok-bg); color: var(--ok-fg); }
+.part { background: var(--part-bg); color: var(--part-fg); }
+ol { padding-left: 22px; margin: 0 0 14px; }
+li { margin-bottom: 8px; }
+.note { background: var(--soft); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.button { display: inline-block; padding: 10px 16px; border-radius: 8px; border: 1px solid var(--line); text-decoration: none; color: var(--fg); font-weight: 600; font-size: 15px; }
+.button.primary { background: var(--accent); border-color: var(--accent); color: #06231a; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+@media (max-width: 560px) {
+  main { padding-top: 32px; }
+  h1 { font-size: 25px; }
+  header img { width: 52px; height: 52px; }
+  th, td { padding: 10px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.svg" alt="">
+    <div>
+      <h1>Paper Rerun</h1>
+      <p class="tagline">We re-run published research code and report what holds.</p>
+    </div>
+  </header>
+
+  <p class="lead">Most papers that ship code are never re-run by anyone outside the lab that wrote them. Reviewers read the paper; they rarely run it. We pick papers that many people build on, run the authors' code on the authors' data again, and publish what came out.</p>
+  <p>Every report has the numbers we got next to the paper's, every command and log, and everything we had to fix to make the code run. The work is done by AI agents on one home computer, and a person reviews each report before it goes out.</p>
+  <div class="buttons">
+    <a class="button primary" href="https://github.com/paper-rerun/paper-rerun">Read the reports</a>
+    <a class="button" href="https://github.com/paper-rerun/paper-rerun/blob/main/METHOD.md">How we work</a>
+  </div>
+
+  <h2>Results so far</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2025-dauparas-ligandmpnn/REPORT.md">LigandMPNN</a><span class="field">Nature Methods 2025 · protein design</span></td>
+          <td><span class="pill part">Partially</span></td>
+          <td>The main claim holds. Three of six headline numbers match. The authors' own per-protein data show the figure used a different definition than the text, which moves the metal number by about 15 points.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-madhavacheril-act-dr6/REPORT.md">ACT DR6 lensing</a><span class="field">ApJ 2024 · cosmology</span></td>
+          <td><span class="pill ok">Reproduced</span></td>
+          <td>All targets within 0.1σ, run to the paper's convergence criterion. The released setup needs an older version of CAMB.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-deng-chgnet/REPORT.md">CHGNet</a><span class="field">Nature Machine Intelligence 2023 · materials</span></td>
+          <td><span class="pill part">Partially</span></td>
+          <td>The released model behaves as described, but the test split was never published, so the headline test error can't be re-checked.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2025-stringer-cellpose3/REPORT.md">Cellpose3</a><span class="field">Nature Methods 2025 · cell imaging</span></td>
+          <td><span class="pill part">Partially</span></td>
+          <td>All 46 values on real microscopy data match within 0.01. The images behind the main benchmark were never released.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2025-zhai-plantcad/REPORT.md">PlantCAD</a><span class="field">PNAS 2025 · plant genomics</span></td>
+          <td><span class="pill part">Partially</span></td>
+          <td>All four values fall inside our 95% interval on a 300k-window sample. The full test set would take about 115 days on our GPU.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:14px">"Partially" is not an accusation. So far it has always meant something was missing (a test split, a dataset, compute), never a wrong result.</p>
+
+  <h2>How it works</h2>
+  <ol>
+    <li><strong>Choose.</strong> A script ranks science repositories by recent citations, use, and open questions about reproducing them.</li>
+    <li><strong>Pin the claims.</strong> One agent lists the numbers to check and fixes every definition from the paper text before anything runs. A second agent checks the list.</li>
+    <li><strong>Run.</strong> The authors' code and released data run on one home computer, in an environment frozen from the versions they used.</li>
+    <li><strong>Recompute blind.</strong> A different agent rebuilds the environment and recomputes every number without seeing the first results.</li>
+    <li><strong>Attack the report.</strong> Another agent's only job is to find errors in the report; a last one fixes them.</li>
+    <li><strong>Human review.</strong> A person reads the report and any message to the authors before anything is published.</li>
+  </ol>
+
+  <h2>Do the same</h2>
+  <p>Checking a paper takes days of setup that nobody gets credit for, which is why it rarely happens. AI agents make that work cheap. The method, every agent prompt and the scripts are public, so you can run the same checks on papers in your own field.</p>
+  <div class="buttons">
+    <a class="button" href="https://github.com/paper-rerun/paper-rerun/blob/main/METHOD.md">Method</a>
+    <a class="button" href="https://github.com/paper-rerun/paper-rerun/tree/main/tools">Scripts and prompts</a>
+  </div>
+
+  <h2>If you are an author</h2>
+  <div class="note">
+    <p style="margin:0">If a report gets something wrong, <a href="https://github.com/paper-rerun/paper-rerun/issues">open an issue</a>. We will re-check, and we will correct or withdraw the report and say so publicly.</p>
+  </div>
+
+  <footer>
+    Paper Rerun is run by Filipe Tessaro. Reports are CC BY 4.0, code is MIT. The reproductions are done by AI agents (Claude, by Anthropic) and reviewed by a person before publication.
+  </footer>
+</main>
+</body>
+</html>
