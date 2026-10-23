@@ -53,7 +53,12 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
   main { padding-top: 32px; }
   h1 { font-size: 25px; }
   header img { width: 52px; height: 52px; }
-  th, td { padding: 10px; }
+  thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tr { padding: 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child { border-bottom: 0; }
+  td { border: 0; padding: 2px 0; }
+  td .pill { margin: 6px 0 4px; }
 }
 </style>
 </head>
@@ -132,7 +137,7 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
   </div>
 
   <footer>
-    Paper Rerun is run by Filipe Tessaro. Reports are CC BY 4.0, code is MIT. The reproductions are done by AI agents (Claude, by Anthropic) and reviewed by a person before publication.
+    Paper Rerun is run by Filipe Tessaro. Cite the reports with <a href="https://doi.org/10.5281/zenodo.23585151">DOI 10.5281/zenodo.23585151</a>. Reports are CC BY 4.0, code is MIT. The reproductions are done by AI agents (Claude, by Anthropic) and reviewed by a person before publication.
   </footer>
 </main>
 </body>
