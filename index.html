@@ -93,6 +93,11 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2022-qu-particle-transformer/REPORT.md">Particle Transformer</a><span class="field">ICML 2022 · particle physics</span></td>
+          <td><span class="pill ok">Reproduced</span></td>
+          <td>Accuracy, AUC and all nine background rejections in Table 1 hold on the full 20 M-jet test set with the released checkpoint; the ParticleNet row matches too. Installing the README's weaver-core version today gives near-random results without any error, so we suggested pinning it.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-li-miniprot/REPORT.md">miniprot</a><span class="field">Bioinformatics 2023 · genomics</span></td>
           <td><span class="pill part">Partially reproduced</span></td>
           <td>Splice-junction accuracy in Table 1 matches in all four columns. Base-level sensitivity on the human genome comes out about one point lower, so 6 of 12 percentages miss the tolerance. The test protein lists and evaluation commands were never published; we asked the author.</td>
