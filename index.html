@@ -93,6 +93,11 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2026-gilchrist-foldmason/REPORT.md">FoldMason</a><span class="field">Science 2026 · protein structure</span></td>
+          <td><span class="pill part">Partially reproduced</span></td>
+          <td>Where the inputs are still intact, 31 of 32 protein clusters match the authors exactly. Part of the benchmark data has since disappeared: 285 structures were deleted from AlphaFold DB and the HOMSTRAD reference is offline, so the rest could not be checked.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-dimitrov-liana-slidetags/REPORT.md">LIANA+</a><span class="field">Nat Cell Biol 2024 · cell biology</span></td>
           <td><span class="pill ok">Reproduced</span></td>
           <td>The method comparison in Fig. 4 re-runs from the released files and matches exactly. The false-discovery correction the Methods describe has no effect in the code; applied as described, it reorders the methods. We asked the authors which was intended.</td>
