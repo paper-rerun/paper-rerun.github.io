@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Rerun scoreboard</title>
+<meta name="description" content="Every paper we re-ran, every note we sent to authors, and every dataset we opened, updated from the repository.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Paper Rerun">
+<meta property="og:description" content="We re-run published research code and report what holds.">
+<meta property="og:image" content="https://paper-rerun.github.io/icon-512.png">
+<style>
+:root {
+  --bg: #ffffff; --fg: #14202e; --muted: #5a6778; --line: #e3e7ec; --soft: #f5f7f9;
+  --accent: #1f9e68; --navy: #0f1b2d;
+  --ok-bg: #e3f6ec; --ok-fg: #13643f; --part-bg: #fdf1dc; --part-fg: #7a4d07;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1420; --fg: #e6ebf1; --muted: #9aa7b6; --line: #1f2c3b; --soft: #111d2b;
+    --accent: #3ecf8e;
+    --ok-bg: #12382a; --ok-fg: #7fe0b2; --part-bg: #3a2b0e; --part-fg: #f2c66d;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+header { display: flex; gap: 18px; align-items: center; margin-bottom: 28px; }
+header img { width: 64px; height: 64px; border-radius: 14px; flex: none; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0; }
+.tagline { margin: 2px 0 0; color: var(--muted); }
+h2 { font-size: 21px; margin: 44px 0 10px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+.lead { font-size: 19px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--soft); font-weight: 600; font-size: 14px; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td .field { display: block; color: var(--muted); font-size: 13px; }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ok { background: var(--ok-bg); color: var(--ok-fg); }
+.part { background: var(--part-bg); color: var(--part-fg); }
+ol { padding-left: 22px; margin: 0 0 14px; }
+li { margin-bottom: 8px; }
+.note { background: var(--soft); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.button { display: inline-block; padding: 10px 16px; border-radius: 8px; border: 1px solid var(--line); text-decoration: none; color: var(--fg); font-weight: 600; font-size: 15px; }
+.button.primary { background: var(--accent); border-color: var(--accent); color: #06231a; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+@media (max-width: 560px) {
+  main { padding-top: 32px; }
+  h1 { font-size: 25px; }
+  header img { width: 52px; height: 52px; }
+  thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tr { padding: 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child { border-bottom: 0; }
+  td { border: 0; padding: 2px 0; }
+  td .pill { margin: 6px 0 4px; }
+}
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 8px; }
+.stat { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.stat b { display: block; font-size: 28px; line-height: 1.2; }
+.stat span { color: var(--muted); font-size: 14px; }
+.bad { background: #fde4e4; color: #8a1c1c; }
+@media (prefers-color-scheme: dark) { .bad { background: #3d1515; color: #f2a0a0; } }
+.small { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <a href="./"><img src="icon.svg" alt="Paper Rerun"></a>
+    <div>
+      <h1>Scoreboard</h1>
+      <p class="tagline">Every paper we re-ran, every note we sent back, every dataset we opened.</p>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="n-papers">—</b><span>papers re-run</span></div>
+    <div class="stat"><b id="n-repro">—</b><span>reproduced in full</span></div>
+    <div class="stat"><b id="n-notes">—</b><span>notes to authors posted</span></div>
+    <div class="stat"><b id="n-records">—</b><span>results in open datasets</span></div>
+  </div>
+  <p class="small" id="built">Loading the data from the repository…</p>
+
+  <h2>Papers</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
+    <tbody id="papers"></tbody>
+  </table></div>
+
+  <h2>Notes to authors</h2>
+  <p>When a re-run finds something the authors can fix in a line or two, we send it as a pull request or an issue.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Repository</th><th>What we asked</th><th>Status</th></tr></thead>
+    <tbody id="followup"></tbody>
+  </table></div>
+
+  <h2>Dependency drift</h2>
+  <p>Some failures come from a library that changed after the paper. Every Monday we check whether a fresh install still lands on the broken version.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Package</th><th>Problem</th><th>Today</th></tr></thead>
+    <tbody id="drift"></tbody>
+  </table></div>
+
+  <h2>Open Tables datasets</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Dataset</th><th>Results</th></tr></thead>
+    <tbody id="datasets"></tbody>
+  </table></div>
+
+  <footer>
+    The numbers come from the <a href="https://github.com/paper-rerun/paper-rerun/tree/main/scoreboard">scoreboard folder</a> of the repository, built by <code>tools/scoreboard.py</code> from the README, FOLLOWUP.md and the reports. <a href="./">Back to Paper Rerun</a>.
+  </footer>
+</main>
+<script>
+const BASE = 'https://raw.githubusercontent.com/paper-rerun/paper-rerun/main/scoreboard/';
+const load = name => fetch(BASE + name + '.json').then(r => r.json());
+
+function cell(row, text, href, className) {
+  const td = row.insertCell();
+  const target = href ? td.appendChild(document.createElement('a')) : td;
+  if (href) target.href = href;
+  if (className) {
+    const pill = document.createElement('span');
+    pill.className = 'pill ' + className;
+    pill.textContent = text;
+    td.appendChild(pill);
+  } else {
+    target.textContent = text;
+  }
+  return td;
+}
+
+function verdictClass(verdict) {
+  if (verdict === 'Reproduced') return 'ok';
+  if (verdict === 'Not reproduced') return 'bad';
+  return 'part';
+}
+
+Promise.all(['papers', 'followup', 'drift', 'datasets', 'built'].map(load)).then(([papers, followup, drift, datasets, built]) => {
+  document.getElementById('n-papers').textContent = papers.length;
+  document.getElementById('n-repro').textContent = papers.filter(p => p.verdict === 'Reproduced').length;
+  const posted = followup.filter(f => f.status !== 'ready').length;
+  document.getElementById('n-notes').textContent = posted + ' of ' + followup.length;
+  const records = datasets.reduce((sum, d) => sum + d.records, 0);
+  document.getElementById('n-records').textContent = records.toLocaleString('en-US');
+  document.getElementById('built').textContent = 'Data built on ' + built[0].built_at.slice(0, 10) + '.';
+
+  const paperRows = document.getElementById('papers');
+  for (const p of papers) {
+    const row = paperRows.insertRow();
+    const name = cell(row, p.paper, p.report_url);
+    const field = document.createElement('span');
+    field.className = 'field';
+    field.textContent = p.venue + ' ' + p.year + ' · ' + p.field;
+    name.appendChild(field);
+    cell(row, p.verdict, null, verdictClass(p.verdict));
+    cell(row, p.finding);
+  }
+
+  const followupRows = document.getElementById('followup');
+  for (const f of followup) {
+    const row = followupRows.insertRow();
+    const repo = cell(row, f.repository, 'https://github.com/' + f.repository);
+    const kind = document.createElement('span');
+    kind.className = 'field';
+    kind.textContent = f.kind + ' · ' + f.paper;
+    repo.appendChild(kind);
+    cell(row, f.ask);
+    cell(row, f.status, null, f.status === 'posted' ? 'ok' : 'part');
+  }
+
+  const driftRows = document.getElementById('drift');
+  for (const d of drift) {
+    const row = driftRows.insertRow();
+    cell(row, d.package);
+    cell(row, d.finding);
+    cell(row, d.today + ' (' + d.status + ')', null, d.status.startsWith('fixed') ? 'ok' : 'bad');
+  }
+
+  const datasetRows = document.getElementById('datasets');
+  for (const d of datasets) {
+    const row = datasetRows.insertRow();
+    cell(row, d.dataset, d.url);
+    cell(row, d.records.toLocaleString('en-US'));
+  }
+}).catch(() => {
+  document.getElementById('built').textContent = 'Could not load the data. It is also in the repository, in the scoreboard folder.';
+});
+</script>
+</body>
+</html>
