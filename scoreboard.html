@@ -172,7 +172,7 @@ Promise.all(['papers', 'followup', 'drift', 'datasets', 'built'].map(load)).then
     kind.textContent = f.kind + ' · ' + f.paper;
     repo.appendChild(kind);
     cell(row, f.ask);
-    cell(row, f.status, null, f.status === 'posted' ? 'ok' : 'part');
+    cell(row, f.status, null, f.status === 'ready' ? 'part' : (f.status.startsWith('closed') ? 'bad' : 'ok'));
   }
 
   const driftRows = document.getElementById('drift');
