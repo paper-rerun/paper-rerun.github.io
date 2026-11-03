@@ -101,6 +101,16 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-huang-compleasm/REPORT.md">compleasm</a><span class="field">Bioinformatics 2023 · genomics</span></td>
+          <td><span class="pill bad">Not reproduced</span></td>
+          <td>Six of seven genomes match the paper's completeness scores within 0.3 points. Maize does not: 99.4% complete against 96.7%. The newest version of the tool gives the same maize numbers, so the likely cause is that the reference gene sets were re-released in 2024 and the 2023 files are gone. We asked the authors for them.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2022-takamoto-pdebench/REPORT.md">PDEBench</a><span class="field">NeurIPS 2022 · machine learning</span></td>
+          <td><span class="pill part">Partially reproduced</span></td>
+          <td>With the 2022 data and released models, 21 of 26 error values match the paper, including all 10 for Darcy flow. One released model file seems to carry the wrong label: the advection model for β=1.0 behaves like the β=0.4 one. We told the authors.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2026-gilchrist-foldmason/REPORT.md">FoldMason</a><span class="field">Science 2026 · protein structure</span></td>
           <td><span class="pill part">Partially reproduced</span></td>
           <td>Where the inputs are still intact, 31 of 32 protein clusters match the authors exactly. Part of the benchmark data has since disappeared: 285 structures were deleted from AlphaFold DB and the HOMSTRAD reference is offline, so the rest could not be checked.</td>
