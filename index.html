@@ -101,6 +101,16 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-rasp-weatherbench2/REPORT.md">WeatherBench 2</a><span class="field">JAMES 2024 · weather and climate</span></td>
+          <td><span class="pill ok">Reproduced</span></td>
+          <td>All 50 forecast-error values we checked in the headline figure match, for six models over the whole of 2020. The temperature values only match with a land mask the paper describes but the public code does not include. We pointed the authors to it.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-abbott-gwtc3-population/REPORT.md">GWTC-3 population</a><span class="field">Phys Rev X 2023 · gravitational waves</span></td>
+          <td><span class="pill ok">Reproduced</span></td>
+          <td>We reran the black-hole population fit twice from the released data. The mass peak (33.5 against 34 solar masses) and the merger rate (28.3 against 28.3 per Gpc³ per year) match. We found a small bug in the rate step that shifts the rate by about 0.13, well inside the uncertainty.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-huang-compleasm/REPORT.md">compleasm</a><span class="field">Bioinformatics 2023 · genomics</span></td>
           <td><span class="pill part" style="background:var(--soft);color:var(--fg)">Not reproduced</span></td>
           <td>Six of seven genomes match the paper's completeness scores within 0.3 points. Maize does not: 99.4% complete against 96.7%. The newest version of the tool gives the same maize numbers, so the likely cause is that the reference gene sets were re-released in 2024 and the 2023 files are gone. We asked the authors for them.</td>
