@@ -101,6 +101,16 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-krapp-pesto/REPORT.md">PeSTo</a><span class="field">Nature Communications 2023 &middot; protein structure</span></td>
+          <td><span class="pill ok">Reproduced</span></td>
+          <td>A model that predicts where one protein binds another. It scores as published on both benchmarks, and all 53 structures of the main test match the authors' own saved numbers to three decimals. Neither the prepared test data nor the list of structures for the larger benchmark is in the repository, so we rebuilt both from the paper's own tables.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-yuksel-selformer/REPORT.md">SELFormer</a><span class="field">Mach Learn Sci Technol 2023 &middot; chemistry</span></td>
+          <td><span class="pill part">Partially reproduced</span></td>
+          <td>The published models score below the paper on all four tasks we could check, one of them by a wide margin, and the fifth task has no model to download. The authors left their own training logs inside the model folders, and our run matches those logs exactly, so the data split and the measurement are theirs. Whatever produced the published table, it was not these files.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-rasp-weatherbench2/REPORT.md">WeatherBench 2</a><span class="field">JAMES 2024 · weather and climate</span></td>
           <td><span class="pill ok">Reproduced</span></td>
           <td>All 50 forecast-error values we checked in the headline figure match, for six models over the whole of 2020. The temperature values only match with a land mask the paper describes but the public code does not include. We pointed the authors to it.</td>
