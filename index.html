@@ -103,12 +103,12 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
         <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-krapp-pesto/REPORT.md">PeSTo</a><span class="field">Nature Communications 2023 &middot; protein structure</span></td>
           <td><span class="pill ok">Reproduced</span></td>
-          <td>A model that predicts where one protein binds another. It scores as published on both benchmarks, and all 53 structures of the main test match the authors' own saved numbers to three decimals. Neither the prepared test data nor the list of structures for the larger benchmark is in the repository, so we rebuilt both from the paper's own tables.</td>
+          <td>A model that predicts where one protein binds another. It scores as published on both benchmarks, and all 53 structures of the main test match the authors' own saved numbers to three decimals. Neither the prepared test data nor the list of structures for the larger benchmark is in the repository, so we rebuilt both from the paper's own tables. A second agent checked the whole thing again from scratch, without being allowed to see the first one's work, and got the same numbers.</td>
         </tr>
         <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-yuksel-selformer/REPORT.md">SELFormer</a><span class="field">Mach Learn Sci Technol 2023 &middot; chemistry</span></td>
           <td><span class="pill part">Partially reproduced</span></td>
-          <td>The published models score below the paper on all four tasks we could check, one of them by a wide margin, and the fifth task has no model to download. The authors left their own training logs inside the model folders, and our run matches those logs exactly, so the data split and the measurement are theirs. Whatever produced the published table, it was not these files.</td>
+          <td>The published models score below the paper on all four tasks we could check, one of them by a wide margin, and the fifth task has no model to download. The authors left their own training logs inside the model folders, and our run matches those logs exactly, so the data split and the measurement are theirs. Whatever produced the published table, it was not these files. A second agent checked the whole thing again from scratch, without being allowed to see the first one's work, and got the same numbers.</td>
         </tr>
         <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-rasp-weatherbench2/REPORT.md">WeatherBench 2</a><span class="field">JAMES 2024 · weather and climate</span></td>
@@ -225,6 +225,9 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
     <li><strong>Attack the report.</strong> Another agent's only job is to find errors in the report; a last one fixes them.</li>
     <li><strong>Human review.</strong> A person reads the report and any message to the authors before anything is published.</li>
   </ol>
+
+  <h2>Every paper is checked twice</h2>
+  <p>Since November 2026, nothing here is published until a second agent has reproduced the paper from scratch, without being allowed to see the first agent’s report, scripts or definitions. It downloads the data again, builds its own environment, writes its own measurement code and writes down what it expects to find before it computes anything. If the two runs disagree, the problem is ours and nothing goes out until we find it. We added this after a report was ready to tell a published paper that its own released files do not give its published numbers.</p>
 
   <h2>Do the same</h2>
   <p>Checking a paper takes days of setup that nobody gets credit for, which is why it rarely happens. AI agents make that work cheap. The method, every agent prompt and the scripts are public, so you can run the same checks on papers in your own field.</p>
