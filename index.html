@@ -101,6 +101,11 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2024-desi-bao-vi/REPORT.md">DESI 2024 VI</a><span class="field">JCAP 2025 &middot; cosmology</span></td>
+          <td><span class="pill part">Partially reproduced</span></td>
+          <td>The largest galaxy-distance survey so far, and what it says about the matter content and expansion rate of the universe. Two of the three headline numbers match. The third, the expansion rate, comes out a fifth of an error bar high, and the reason is in the authors' own published chain: it uses a different prior on the density of ordinary matter from the one the paper describes. Their chain that does use the paper's prior gives our number. A second agent checked the whole thing again from scratch, without being allowed to see the first one's work, and got the same numbers and found the same prior.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-krapp-pesto/REPORT.md">PeSTo</a><span class="field">Nature Communications 2023 &middot; protein structure</span></td>
           <td><span class="pill ok">Reproduced</span></td>
           <td>A model that predicts where one protein binds another. It scores as published on both benchmarks, and all 53 structures of the main test match the authors' own saved numbers to three decimals. Neither the prepared test data nor the list of structures for the larger benchmark is in the repository, so we rebuilt both from the paper's own tables. A second agent checked the whole thing again from scratch, without being allowed to see the first one's work, and got the same numbers.</td>
