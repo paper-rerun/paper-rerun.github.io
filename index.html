@@ -101,6 +101,11 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
       <thead><tr><th>Paper</th><th>Verdict</th><th>What we found</th></tr></thead>
       <tbody>
         <tr>
+          <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2025-fallahpour-codontransformer/REPORT.md">CodonTransformer</a><span class="field">Nature Communications 2025 &middot; gene design</span></td>
+          <td><span class="pill part">Two verdicts</span></td>
+          <td>A neural network that rewrites a gene so a chosen organism reads it efficiently. All three headline numbers of the figure we checked come out right, and the published model files regenerate every one of the 520 benchmark genes exactly, character for character. The interesting part is the disagreement. A second agent redid the whole study from the paper alone, without seeing the first one's work, got identical numbers, and reached a different verdict, because the two had written different rules in advance for what counts as a match, and only one of those rules can be met with the data the authors deposited. We publish both verdicts and say which rule was the bad one: ours. Along the way, three defects in the released material, one of them an equation in the paper that does not describe the calculation the authors actually ran.</td>
+        </tr>
+        <tr>
           <td><a href="https://github.com/paper-rerun/paper-rerun/blob/main/reports/2023-agazie-nanograv15/REPORT.md">NANOGrav 15 yr</a><span class="field">ApJ Letters 2023 &middot; gravitational waves</span></td>
           <td><span class="pill ok">Reproduced</span></td>
           <td>The first strong evidence for a background of gravitational waves, picked up by timing pulsars for 15 years. From the chains the team published, we get their amplitude to the last digit and their Bayes factors inside the published ranges. The file behind the headline number is no longer in the repository: it was removed in 2024 and we recovered it from the git history. A second agent checked the whole thing again from scratch, without seeing the first one's work, and got the same numbers.</td>
